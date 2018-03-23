@@ -16,4 +16,4 @@ RUN apk add perl-xml-twig
 RUN rm -rf /var/cache/apk/*
 
 WORKDIR /usr/src/app
-ENTRYPOINT chmod +x build/build.sh && build/build.sh
+ENTRYPOINT chmod +x ${ENTRYPOINT_SCRIPT} && ${ENTRYPOINT_SCRIPT}
