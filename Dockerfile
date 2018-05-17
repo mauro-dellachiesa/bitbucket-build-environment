@@ -1,6 +1,10 @@
-FROM maven:3.5-jdk-8-alpine
+FROM node:8.11.2-alpine
 VOLUME /usr/src/app
-VOLUME /root/.m2/repository
+
+RUN apk update
+RUN apk add perl-xml-twig git openssh-client curl
+RUN rm -rf /var/cache/apk/*
+
 # START - Setup Sonar Scanner
 ENV SONAR_VERSION 3.0.3.778
 ENV SONAR_FOLDER sonar-scanner-cli-${SONAR_VERSION}
@@ -10,10 +14,6 @@ RUN unzip sonar.zip
 RUN rm sonar.zip
 RUN chmod +x ${SONAR_EXE}
 # END - Setup Sonar Scanner
-
-RUN apk update
-RUN apk add perl-xml-twig git openssh-client
-RUN rm -rf /var/cache/apk/*
 
 #http://dev.im-bot.com/docker-select-caching/
 ARG CACHEBUST=1
