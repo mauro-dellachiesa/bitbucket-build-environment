@@ -2,8 +2,7 @@ FROM node:8.11.2-alpine
 VOLUME /usr/src/app
 
 RUN apk update
-RUN apk add perl-xml-twig git openssh-client curl
-RUN rm -rf /var/cache/apk/*
+RUN apk add --no-cache perl-xml-twig git openssh-client curl gcc musl-dev
 
 # START - Setup Sonar Scanner
 ENV SONAR_VERSION 3.0.3.778
